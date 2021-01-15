@@ -444,6 +444,7 @@ function pushDir () {
 假设只有一个过滤器的话继续遍历会直到结束，结束后会再调一次`pushDir`方法，所以修改一下这个方法，进行一次过滤器收集处理：
 
 ```js
+
 function pushDir () {
   dir.raw = str.slice(begin, i)
   if (dir.expression === undefined) {
@@ -609,8 +610,6 @@ exports.parse = function (s) {
     }
   }
   pushDir()
-  console.log(JSON.stringify(dirs), dirs)
-  debugger
   return dirs
 }
 function pushDir () {
@@ -636,4 +635,3 @@ function pushFilter() {
 ```
 
 把上面的代码替换掉`vue`源码里的相关代码，测试了一下基本用例是能跑通的，但是可能还会有其他一些特殊场景没有照顾到，更完善的代码请自行阅读`vue`源码。
-

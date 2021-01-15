@@ -83,7 +83,7 @@ p.walk = function (obj) {
 }
 ```
 
-`walk`方法对对象的每个子属性遍历调用`convert`方法，这个方法是核心方法：
+`walk`方法对对象的每个子属性遍历调用`convert`方法：
 
 ```js
 p.convert = function (key, val) {
@@ -100,7 +100,7 @@ p.convert = function (key, val) {
     enumerable: true,
     configurable: true,
     get: function () {
-      // 这里进行收集依赖，Observer.target是一个全局属性，一般是一个watcher实例，后续再细说，当引用该属性前把watcher实例赋值给这个全局属性，此处就能引用到，然后收集到该属性的dep实例列表里
+      // 这里进行收集依赖，Observer.target是一个全局属性，是一个watcher实例，后续再细说，当引用该属性前把watcher实例赋值给这个全局属性，此处就能引用到，然后收集到该属性的dep实例列表里
       if (Observer.target) {
         Observer.target.addDep(dep)
       }
@@ -231,7 +231,7 @@ p.observeArray = function (items) {
 
 很简单，遍历数组调用`observe`方法。
 
-到这里，就完成了对`data`上所有数据的观察了，总结一下，从`data`对象开始，给该对象创建一个观察实例，然后遍历它的子属性，值是数组或对象的话又创建对应的观察实例，然后再继续遍历它们的子属性，继续递归，直到把每个属性都转换成getter和setter。
+到这里，就完成了对`data`上所有数据的观察了，总结一下，从`data`对象开始，给该对象创建一个观察实例，然后遍历它的子属性，值是数组或对象的话又创建对应的观察实例，然后再继续遍历它们的子属性，继续递归，直到把每个属性都转换成`getter`和`setter`。
 
 在第一次渲染的时候会引用用到的值，也就是会触发对应属性的`getter`，引用前会把对应的`watcher`赋值到`Observer.target`属性，`JavaScript`代码执行是单线程的，所以同一时刻只会有一个`Observer.target`，所以只要某个属性的`getter`里获取到了此刻的`Observer.target`，那一定代表该`watcher`是依赖该属性的，那么就添加到该属性的依赖收集对象`dep`里，这里巧妙的使用闭包来保存每个属性的`dep`实例，后续如果该属性值变化了，那么会触发`setter`，如果新赋值是对象或数组又会递归进行观察，最后再通知该属性的所有依赖进行更新。
 

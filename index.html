@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>demo</title>
+    <style>
+        .msg {
+            transition: all .3s ease;
+            height: 30px;
+            padding: 10px;
+            background-color: #eee;
+            overflow: hidden;
+        }
+
+        .msg.expand-enter,
+        .msg.expand-leave {
+            height: 0;
+            padding: 0 10px;
+            opacity: 0;
+        }
+
+        .animated {
+            display: inline-block;
+        }
+
+        .animated.bounce-enter {
+            animation: bounce-in .5s;
+        }
+
+        .animated.bounce-leave {
+            animation: bounce-out .5s;
+        }
+
+        @keyframes bounce-in {
+            0% {
+                transform: scale(0);
+            }
+
+            50% {
+                transform: scale(1.5);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes bounce-out {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.5);
+            }
+
+            100% {
+                transform: scale(0);
+            }
+        }
+    </style>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- <div class="{{message + 'error'}}">有值我就显示</div>
+        <div v-if="message === 'buff'">我是隐藏buff</div>
+        <div v-if="show">有值我就显示</div> -->
+        <!-- <p>{{showMessage}}</p> -->
+        <!-- <input v-model="message"> -->
+        <my-component v-ref="myComponent"></my-component>
+    </div>
+    <!-- <div id="app">
+        <button v-on="click: show = !show">切换</button>
+        <div class="msg" v-if="show" v-transition="expand">我出来了</div>
+        <p class="animated" v-if="show" v-transition="bounce">Look at me!</p>
+        <p class="msg" v-if="show" v-transition="fade">我是JavaScript动画</p>
+    </div> -->
+</body>
+
+</html>
