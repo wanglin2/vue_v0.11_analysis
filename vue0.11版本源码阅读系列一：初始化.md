@@ -10,7 +10,7 @@
 
 目录结构如下：
 
-![image-20201229111517784](C:\Users\wanglin25\AppData\Roaming\Typora\typora-user-images\image-20201229111517784.png)
+![image-20201229111517784](./assets/image-20201229111517784.png)
 
 看起来是不是挺清晰挺简单的，第一件事是要能把它跑起来，便于打断点进行调试，但是构建工具用的是`grunt`，不会，所以简单的使用`webpack`来配置一下：
 
