@@ -6,7 +6,7 @@
 
 
 
-vue0.11版本源码阅读系列文章
+项目启动：
 
 ```bash
 git clone https://github.com/wanglin2/vue_v0.11_analysis.git
