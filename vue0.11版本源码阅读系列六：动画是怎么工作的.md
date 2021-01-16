@@ -85,7 +85,7 @@ module.exports = {
 
 这个指令不会创建`watcher`，因为指令的值要么是`css`的类名，要么是`JavaScript`动画选项的名称，都不需要进行观察。指令绑定时所做的事情就是给`el`元素添加了个自定义属性，保存了表达式的值，这里是`expand`、`JavaScript`动画函数，这里是`undefined`。
 
-要触发动画需要修改`if`指令`show`的值，假设开始是`false`，我们把它改成`true`，这会触发`if`指令的`update`方法，根据第三篇[vue0.11版本源码阅读系列三：模板编译]()最后部分对`if`指令过程的解析我们知道在进入时调用了`transition.blockAppend(frag, this.end, vm)`，在离开时调用了`transition.blockRemove(this.start, this.end, this.vm)`，这里显然会调用`blockAppend`：
+要触发动画需要修改`if`指令`show`的值，假设开始是`false`，我们把它改成`true`，这会触发`if`指令的`update`方法，根据第三篇[vue0.11版本源码阅读系列三：指令编译](https://juejin.cn/post/6918313229449953293)最后部分对`if`指令过程的解析我们知道在进入时调用了`transition.blockAppend(frag, this.end, vm)`，在离开时调用了`transition.blockRemove(this.start, this.end, this.vm)`，这里显然会调用`blockAppend`：
 
 ```js
 // block是包含了if指令绑定元素的代码片段
@@ -193,7 +193,7 @@ function push (el, dir, op, cls, cb) {
 }
 ```
 
-把本次的任务添加到队列，注册了个异步回调在下一帧执行，关于`nextTick`的详细分析请前往[vue0.11版本源码阅读系列五：批量更新是怎么做的]()。
+把本次的任务添加到队列，注册了个异步回调在下一帧执行，关于`nextTick`的详细分析请前往[vue0.11版本源码阅读系列五：批量更新是怎么做的](https://juejin.cn/post/6918316455142686734)。
 
 `addClass`和`op`都是同步任务，会立即执行，如果此刻有多个被这个`if`指令控制的元素都会被依次添加到队列里，结果就是这些元素都会被添加到页面上，但是因为我们给进入的样式设置的是` height: 0;opacity: 0;`，所以是看不见的，这些同步任务执行完后才会去异步队列里把注册的`flush`方法拉出来执行：
 

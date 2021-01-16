@@ -251,7 +251,7 @@ function insert (vm, target, cb, withTransition, op1, op2) {
 }
 ```
 
-`op`方法会调用`transition.before`方法把元素插入到文档中，关于过渡插入的详细分析请参考[vue0.11版本源码阅读系列六：动画是怎么工作的](vue0.11版本源码阅读系列六：动画是怎么工作的)。
+`op`方法会调用`transition.before`方法把元素插入到文档中，关于过渡插入的详细分析请参考[vue0.11版本源码阅读系列六：过渡原理](https://juejin.cn/post/6918316620561514510)。
 
 到这里组件就已经渲染完成了，`bind`方法里最后调用了`setCurrent`：
 

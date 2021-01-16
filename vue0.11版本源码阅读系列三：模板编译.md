@@ -113,7 +113,7 @@ function makeTerminalNodeLinkFn (el, dirName, value, options) {
 }
 ```
 
-`parse`方法用来解析指令的值，请移步文章：[vue0.11版本源码阅读系列四：详解指令值解析函数]()，比如指令值为`click: a = a + 1 | uppercase`，处理完最后会返回这样的信息：
+`parse`方法用来解析指令的值，请移步文章：[vue0.11版本源码阅读系列四：详解指令值解析函数](https://juejin.cn/post/6918315630374584334)，比如指令值为`click: a = a + 1 | uppercase`，处理完最后会返回这样的信息：
 
 ```json
 {
@@ -374,7 +374,7 @@ p.beforeGet = function () {
 }
 ```
 
-到这里我们知道了第二篇[vue0.11版本源码阅读系列二：数据观察]()里提到的`Observer.target`是什么了，逻辑也可以串起来，`vue`在数据观察时对每个属性进行了拦截，在`getter`里会判断`Observer.target`是否存在，存在的话会把`Observer.target`对应的`watcher`实例收集到该属性的依赖对象实例`dep`里：
+到这里我们知道了第二篇[vue0.11版本源码阅读系列二：数据观察](https://juejin.cn/post/6918314954986618887)里提到的`Observer.target`是什么了，逻辑也可以串起来，`vue`在数据观察时对每个属性进行了拦截，在`getter`里会判断`Observer.target`是否存在，存在的话会把`Observer.target`对应的`watcher`实例收集到该属性的依赖对象实例`dep`里：
 
 ```js
 if (Observer.target) {
@@ -474,7 +474,7 @@ p.run = function () {
 
 逻辑很简单，遍历调用该`watcher`实例所有指令的`update`方法，指令会完成页面的更新工作。
 
-批量更新请移步文章[vue0.11版本源码阅读系列五：批量更新是怎么做的]()。
+批量更新请移步文章[vue0.11版本源码阅读系列五：批量更新是怎么做的](https://juejin.cn/post/6918316455142686734)。
 
 到这里模板编译的过程就结束了，接下来以一个指令的视角来看一下具体过程。
 
@@ -583,7 +583,7 @@ window.vm = new Vue({
 }
 ```
 
-忽略了部分编译过程，可以看到使用看`transition`类来显示元素。这个过渡类我们将在[vue0.11版本源码阅读系列六：动画是怎么工作的]()里详细了解。
+忽略了部分编译过程，可以看到使用看`transition`类来显示元素。这个过渡类我们将在[vue0.11版本源码阅读系列六：过渡原理](https://juejin.cn/post/6918316620561514510)里详细了解。
 
 
 
