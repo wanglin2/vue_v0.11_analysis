@@ -29,11 +29,11 @@ window.vm.show = false
 
 没有进行批量异步更新的时候：
 
-![2021-01-12-17-01-46](E:\图片\2021-01-12-17-01-46.gif)
+![2021-01-12-17-01-46](http://assets.lxqnsys.com/2021-01-12-17-01-46.gif)
 
 进行了批量异步更新：
 
-![2021-01-12-17-02-21](E:\图片\2021-01-12-17-02-21.gif)
+![2021-01-12-17-02-21](http://assets.lxqnsys.com/2021-01-12-17-02-21.gif)
 
 能清晰的发现通过异步更新能跳过中间不必要的渲染以达到优化性能的效果。
 
@@ -153,7 +153,7 @@ window.vm.show = false
 
 因为有两个指令都依赖了`show`，表达式不一样，所以会有两个`watcher`，这两个`watcher`都会被`show`属性的`dep`收集，所以每修改一次`show`的值都会触发这两个`watcher`的更新，也就是会调两次`batcher.push(this)`方法，第一次调用后会执行`_.nextTick(flush)`注册一个回调，连续两次修改`show`的值，会调用四次上述提到的`batcher.push(this)`方法，因为重复添加的被过滤掉了，所以最后会有两个`watcher`被添加到队列里，以上这些操作都是同步任务，所以是连续被执行完的，等这些同步任务都被执行完了后就会把刚才注册的回调`handle`拿过来执行，也就是会一次性执行刚才添加的两个`watcher`：
 
-![image-20210112200127418](C:\Users\wanglin25\AppData\Roaming\Typora\typora-user-images\image-20210112200127418.png)
+![image-20210112200127418](http://assets.lxqnsys.com/image-20210112200127418.png)
 
 以上就是`vue`异步更新的全部内容。
 

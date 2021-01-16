@@ -114,7 +114,7 @@ new Vue({
 
 在第一篇里我们提到了每个组件选项最后都会被创建成一个继承了`vue`的构造函数：
 
-![image-20210114201622204](C:\Users\wanglin25\AppData\Roaming\Typora\typora-user-images\image-20210114201622204.png)
+![image-20210114201622204](http://assets.lxqnsys.com/image-20210114201622204.png)
 
 然后到模板编译阶段遍历到这个自定义元素会给它添加一个`v-component`属性：
 
@@ -128,11 +128,11 @@ if (component) {
 }
 ```
 
-![image-20210115100403284](C:\Users\wanglin25\AppData\Roaming\Typora\typora-user-images\image-20210115100403284.png)
+![image-20210115100403284](http://assets.lxqnsys.com/image-20210115100403284.png)
 
 所以后续也是通过指令来处理这个自定义组件，接下来会生成链接函数，`component`属于`terminal`指令的一种：
 
-![image-20210115100542982](C:\Users\wanglin25\AppData\Roaming\Typora\typora-user-images\image-20210115100542982.png)
+![image-20210115100542982](http://assets.lxqnsys.com/image-20210115100542982.png)
 
 接下来就回到了正常的指令编译过程了，`_bindDir`方法会给`v-component`指令创建一个`Directive`实例，然后会调用`component`指令的`bind`方法：
 

@@ -505,7 +505,7 @@ window.vm = new Vue({
 
 根据上面的分析，我们知道对于`v-if`这个指令最终肯定调用了`_bindDir`方法：
 
-![image-20210111194832587](C:\Users\wanglin25\AppData\Roaming\Typora\typora-user-images\image-20210111194832587.png)
+![image-20210111194832587](http://assets.lxqnsys.com/image-20210111194832587.png)
 
 进入`Directive`后在`_bind`里调用了`if`指令的`bind`方法，该方法简化后如下：
 
@@ -524,15 +524,15 @@ window.vm = new Vue({
 }
 ```
 
-![image-20210111200014709](C:\Users\wanglin25\AppData\Roaming\Typora\typora-user-images\image-20210111200014709.png)
+![image-20210111200014709](http://assets.lxqnsys.com/image-20210111200014709.png)
 
 可以看到`bind`方法做的事情是用两个注释元素把这个元素从页面上给替换了。 `bind`方法之后就是给这个指令创建`watcher`：
 
-![image-20210111201925172](C:\Users\wanglin25\AppData\Roaming\Typora\typora-user-images\image-20210111201925172.png)
+![image-20210111201925172](http://assets.lxqnsys.com/image-20210111201925172.png)
 
 接下来在`watcher`里给`Observer.target`赋值及进行取值操作，触发了`show`属性的`getter`：
 
-![image-20210112093317760](C:\Users\wanglin25\AppData\Roaming\Typora\typora-user-images\image-20210112093317760.png)
+![image-20210112093317760](http://assets.lxqnsys.com/image-20210112093317760.png)
 
 依赖收集完后会调用`if`指令的`update`方法，看一下这个方法：
 
@@ -568,11 +568,11 @@ window.vm = new Vue({
 
 现在让我们在控制台输入`window.vm.show = true`，这会触发`show`的`setter`：
 
-![image-20210112101502685](C:\Users\wanglin25\AppData\Roaming\Typora\typora-user-images\image-20210112101502685.png)
+![image-20210112101502685](http://assets.lxqnsys.com/image-20210112101502685.png)
 
 然后会调用`show`属性的`dep` 的`notify`方法，`dep`的订阅者里目前就只有`if`指令的`watcher`，所以会调用`watcher`的`update`方法，最终调用到`if`指令的`update`方法，此时的值为`true`，所以会走到`if`分支里，`unlink`也没有值，所以会调用`compile`方法：
 
-![image-20210112102302256](C:\Users\wanglin25\AppData\Roaming\Typora\typora-user-images\image-20210112102302256.png)
+![image-20210112102302256](http://assets.lxqnsys.com/image-20210112102302256.png)
 
 ```js
 {

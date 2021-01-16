@@ -496,7 +496,7 @@ function pushFilter() {
 
 结果如下：
 
-![image-20210108154353418](C:\Users\wanglin25\AppData\Roaming\Typora\typora-user-images\image-20210108154353418.png)
+![image-20210108154353418](http://assets.lxqnsys.com/image-20210108154353418.png)
 
 接下来支持一下多个过滤器的情况，多个过滤器，则会出现多个`|`，所以又会走到`|`的`if`分支，非第一次出现的话不需要修改`expression`的值，直接`push`当前遍历到的过滤器即可：
 
@@ -520,7 +520,7 @@ exports.parse = function (s) {
 
 结果如下：
 
-![image-20210108154842736](C:\Users\wanglin25\AppData\Roaming\Typora\typora-user-images\image-20210108154842736.png)
+![image-20210108154842736](http://assets.lxqnsys.com/image-20210108154842736.png)
 
 最后也看一种特殊情况，就是`||`的情况，这是或的意思，所以肯定不能解析为过滤器，在`if`条件里增加一下判断，排除当前遍历到的`|`前一个或后一个字符也是`|`的情况：
 
